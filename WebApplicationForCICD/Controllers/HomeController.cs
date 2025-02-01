@@ -22,6 +22,12 @@ namespace WebApplicationForCICD.Controllers
         {
             return View();
         }
+        public IActionResult About()
+        {
+            ViewData["Title"] = "About Us";
+            ViewData["Message"] = "This is the About page of our application.";
+            return View();
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
