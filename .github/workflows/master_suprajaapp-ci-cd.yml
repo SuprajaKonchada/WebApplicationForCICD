@@ -51,7 +51,7 @@ jobs:
         id: deploy-to-staging
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'suprajaApp-CI-CD/stagin'
+          app-name: 'suprajaApp-CI-CD/staging'
           slot-name: 'staging'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_6AD75E8A4AAA4563B8D73489CA5AA6DD }}
           package: .
