@@ -47,11 +47,27 @@ jobs:
         with:
           name: .net-app
 
-      - name: Deploy to Azure Web App
-        id: deploy-to-webapp
+      - name: Deploy to Staging Azure Web App
+        id: deploy-to-staging
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'suprajaApp-CI-CD'
-          slot-name: 'Production'
+          app-name: 'suprajaApp-CI-CD/stagin'
+          slot-name: 'staging'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_6AD75E8A4AAA4563B8D73489CA5AA6DD }}
           package: .
+
+  swap:
+    runs-on: windows-lastest
+    needs: deploy
+    steps:
+      - name: Swap Staging to Production
+        uses: azure/CLI@v1
+        with:
+          azcliversion: latest
+          inlineScript: |
+            az webapp deployment slot swap \
+              --resource-group supraja.konchada-ResourceGroup \
+              --name supraja-app-CI-CD
+              --slot staging \
+              --target-slot production
+    
