@@ -67,7 +67,7 @@ jobs:
           inlineScript: |
             az webapp deployment slot swap \
               --resource-group supraja.konchada-ResourceGroup \
-              --name supraja-app-CI-CD
+              --name suprajaapp-CI-CD
               --slot staging \
               --target-slot production
     
